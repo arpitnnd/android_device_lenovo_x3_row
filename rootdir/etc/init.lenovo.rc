@@ -1,0 +1,125 @@
+on boot
+
+    chown system system /sys/bus/spi/devices/spi12.0/clk_enable
+    chown system system /sys/bus/spi/devices/spi12.0/wakeup_enable
+    chown system system /sys/bus/spi/devices/spi12.0/spi_prepare
+    chown system system /sys/bus/spi/devices/spi12.0/irq
+	chown system system /sys/bus/spi/devices/spi12.0/camera_input
+	
+on post-fs
+
+#for factory properties
+service wcg_mac_tool /system/bin/wcg_mac_tool
+   class late_start
+   user root
+   group system bluetooth radio
+   disabled
+   oneshot
+
+# [lenovo_fw,hurui1,frameowrk_root_channel],copy the cert add
+service jcommand /system/bin/sh /system/bin/jcommand.sh
+	class main
+	disabled
+	oneshot
+# [lenovo_fw,hurui1,frameowrk_root_channel],end
+#[Lenovo_fw,hurui1],add
+#Lenovo-sw chencheng6 for iwpriv command add 2015-04-27 begin
+on property:sys.iwpriv.action=1
+    start iwpriv
+
+service iwpriv /system/bin/iwpriv_cmd
+    user root
+    disabled
+    oneshot
+#Lenovo-sw chencheng6 for iwpriv command add 2015-04-27 end
+#[Lenovo_fw,hurui1],end
+
+on property:sys.boot_completed=1
+    start wcg_mac_tool
+
+# [lenovo_fw,hurui1,framewowrk_root_channel],copy the cert add
+on property:sys.boot_completed=1
+    mkdir /data/wapi_certificate 0771 system system
+    retorecon /data/wapi_certificate
+# [lenovo_fw,hurui1,frameowrk_root_channel],end
+
+#zhanghl4 wlan service
+service wlanmode_insmod /system/bin/insmod /system/lib/modules/wlan.ko con_mode=5
+    class main
+    disabled
+    oneshot
+
+service wlanmode_rmmod /system/bin/rmmod wlan
+    class main
+    disabled
+    oneshot
+
+service wlanmode_open /system/bin/ifconfig wlan0 up
+    class main
+    disabled
+    oneshot
+
+service wlanmode_close /system/bin/ifconfig wlan0 down
+    class main
+    disabled
+    oneshot
+
+service wlan_report /system/bin/sh /data/wlantest_report.sh
+    class late_start
+    user root
+    disabled
+    oneshot
+
+on property:wlan.test.load=1
+    start wlanmode_insmod
+
+on property:wlan.test.load=0
+    start wlanmode_rmmod
+
+on property:wlan.test.open=1
+    start wlanmode_open
+
+on property:wlan.test.open=0
+    start wlanmode_close
+
+on property:wlan.test.report=1
+    start wlan_report
+
+
+# load otse module, add by zhuangnk1
+# service otse_load_module /system/bin/sh /system/etc/init.otse.sh
+#    class core
+#    user root
+#    oneshot
+
+#for EngineerTest.apk bt rf test
+service bt_rf_test /system/bin/sh /system/etc/bt_rf_test.sh
+    class late_start
+    user root
+    group bluetooth
+    disabled
+    oneshot
+
+#[lenovo_fw,shiys1,integrate_fingerprint], "add fingerprint daemon", add
+service fingerprintd /system/bin/fingerprintd
+    class late_start
+    user system
+    group system
+#[lenovo_fw,shiys1,integrate_fingerprint], end
+
+service dump_codec_audio /system/bin/sh /system/etc/dump_codec_audio.sh
+    disabled
+    oneshot
+on property:debug.dump.codec.audio=1
+    start dump_codec_audio
+
+service open_audio_kmsg /system/bin/sh /system/etc/open_audio_kmsg.sh
+    disabled
+    oneshot
+on property:debug.open.audio.kmsg=1
+    start open_audio_kmsg
+
+#Lenovo-sw wuzb1 2016-08-11 drop vm caches
+on property:sys.vm.drop_caches=*
+    sync
+    write /proc/sys/vm/drop_caches ${sys.vm.drop_caches}
