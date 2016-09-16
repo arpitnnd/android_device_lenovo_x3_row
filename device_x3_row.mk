@@ -1,3 +1,5 @@
+DEVICE_PATH := device/lenovo/x3_row
+
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # The gps config appropriate for this device
@@ -15,7 +17,7 @@ ifeq ($(TARGET_PREBUILT_KERNEL),)
 else
 	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
-PRODUCT_COPY_FILES += \
+#PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
 
 # Audio
