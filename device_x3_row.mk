@@ -54,7 +54,6 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/audio/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml \
     $(DEVICE_PATH)/audio/surround_sound_3mic/surround_sound_rec_AZ.cfg:system/etc/surround_sound_3mic/surround_sound_rec_AZ.cfg
 
-
 #
 #Configs start
 #
@@ -78,6 +77,10 @@ PRODUCT_COPY_FILES += \
 #misc
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(DEVICE_PATH)/configs/misc,system/etc)
+
+# Perf
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/configs/msm_irqbalance.conf:system/etc/msm_irqbalance.conf
 
 #permissions
 PRODUCT_COPY_FILES += \
@@ -161,7 +164,7 @@ PRODUCT_COPY_FILES += \
 #Configs end
 #
 
-#gps
+#GPS
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/gps/gps.conf:system/etc/gps.conf
 
