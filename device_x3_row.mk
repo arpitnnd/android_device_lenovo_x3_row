@@ -67,9 +67,9 @@ PRODUCT_COPY_FILES += \
 
 # keylayouts
 PRODUCT_COPY_FILES += \
-	$(DEVICE_PATH)/synaptics_dsx.kl:system/usr/keylayout/synaptics_dsx.kl \
-	$(DEVICE_PATH)/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
-	$(DEVICE_PATH)/Generic.kl:system/usr/keylayout/Generic.kl
+	$(DEVICE_PATH)/configs/keylayouts/synaptics_dsx.kl:system/usr/keylayout/synaptics_dsx.kl \
+	$(DEVICE_PATH)/configs/keylayouts/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
+	$(DEVICE_PATH)/configs/keylayouts/Generic.kl:system/usr/keylayout/Generic.kl
 
 # media
 PRODUCT_COPY_FILES += \
