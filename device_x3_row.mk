@@ -18,7 +18,7 @@ endif
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
 
-#Audio
+# Audio
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/audio/acdbdata/Fluid/Fluid_Bluetooth_cal.acdb:system/etc/acdbdata/Fluid/Fluid_Bluetooth_cal.acdb \
     $(DEVICE_PATH)/audio/acdbdata/Fluid/Fluid_General_cal.acdb:system/etc/acdbdata/Fluid/Fluid_General_cal.acdb \
@@ -55,15 +55,15 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/audio/surround_sound_3mic/surround_sound_rec_AZ.cfg:system/etc/surround_sound_3mic/surround_sound_rec_AZ.cfg
 
 #
-#Configs start
+# Configs start
 #
-#data
+# data
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/data/dsi_config.xml:system/etc/data/dsi_config.xml \
     $(DEVICE_PATH)/configs/data/netmgr_config.xml:system/etc/data/netmgr_config.xml \
     $(DEVICE_PATH)/configs/data/qmi_config.xml:system/etc/data/qmi_config.xml
 
-#media
+# media
 PRODUCT_COPY_FILES += \
 		$(DEVICE_PATH)/configs/media/media_profiles.xml:system/etc/media_profiles.xml \
 		$(DEVICE_PATH)/configs/media/media_codecs.xml:system/etc/media_codecs.xml \
@@ -74,7 +74,7 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
 
-#misc
+# misc
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(DEVICE_PATH)/configs/misc,system/etc)
 
@@ -82,7 +82,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/msm_irqbalance.conf:system/etc/msm_irqbalance.conf
 
-#permissions
+# permissions
 PRODUCT_COPY_FILES += \
 		$(DEVICE_PATH)/configs/permissions/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml \
 		$(DEVICE_PATH)/configs/permissions/android.wipower.xml:system/etc/permissions/android.wipower.xml \
@@ -152,21 +152,38 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:system/etc/permissions/android.hardware.sensor.stepcounter.xml \
     frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:system/etc/permissions/android.hardware.sensor.stepdetector.xml
 
-#FEATURE_OPENGLES_EXTENSION_PACK support string config file
+# FEATURE_OPENGLES_EXTENSION_PACK support string config file
 PRODUCT_COPY_FILES += \
 		frameworks/native/data/etc/android.hardware.opengles.aep.xml:system/etc/permissions/android.hardware.opengles.aep.xml
 
-#sensors
+# sensors
 PRODUCT_COPY_FILES += \
 		$(DEVICE_PATH)/configs/sensors/hals.conf:system/etc/sensors/hals.conf \
     $(DEVICE_PATH)/configs/sensors/sensor_def_qcomdev.conf:system/etc/sensors/sensor_def_qcomdev.conf
 #
-#Configs end
+# Configs end
 #
 
-#GPS
+# GPS
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/gps/gps.conf:system/etc/gps.conf
+
+# Ramdisk
+PRODUCT_PACKAGES += \
+    init.class_main.sh \
+    init.lenovo.rc \
+    init.mdm.sh \
+    init.qcom.class_core.sh \
+    init.qcom.early_boot.sh	\
+    init.qcom.factory.sh \
+    init.qcom.sh \
+    init.qcom.syspart_fixup.sh \
+    init.qcom.usb.sh \
+    init.qcom.rc \
+    init.qcom.usb.rc \
+    init.target.rc \
+    ueventd.qcom.rc \
+    fstab.qcom
 
 # WiFi
 #PRODUCT_COPY_FILES += \
@@ -193,7 +210,7 @@ PRODUCT_PACKAGES += \
     hostapd_cli \
     dhcpcd.conf
 
-# setup dalvik vm configs.
+# dalvik vm configs
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 # Boot animation
