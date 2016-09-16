@@ -63,6 +63,12 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/data/netmgr_config.xml:system/etc/data/netmgr_config.xml \
     $(DEVICE_PATH)/configs/data/qmi_config.xml:system/etc/data/qmi_config.xml
 
+# keylayouts
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/synaptics_dsx.kl:system/usr/keylayout/synaptics_dsx.kl \
+    $(DEVICE_PATH)/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
+    $(DEVICE_PATH)/Generic.kl:system/usr/keylayout/Generic.kl
+
 # media
 PRODUCT_COPY_FILES += \
 		$(DEVICE_PATH)/configs/media/media_profiles.xml:system/etc/media_profiles.xml \
