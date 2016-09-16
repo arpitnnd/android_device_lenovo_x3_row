@@ -1,0 +1,2 @@
+#============= qti_init_shell ==============
+allow qti_init_shell device:chr_file { getattr setattr };
