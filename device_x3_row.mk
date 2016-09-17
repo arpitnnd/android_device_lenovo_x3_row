@@ -2,12 +2,9 @@ DEVICE_PATH := device/lenovo/x3_row
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
-# The gps config appropriate for this device
-$(call inherit-product, device/common/gps/gps_us_supl.mk)
-
 $(call inherit-product-if-exists, vendor/lenovo/x3_row/x3_row-vendor.mk)
 
-DEVICE_PACKAGE_OVERLAYS += device/lenovo/x3_row/overlay
+DEVICE_PACKAGE_OVERLAYS += $(DEVICE_PATH)/overlay
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
@@ -172,6 +169,164 @@ PRODUCT_COPY_FILES += \
 # Configs end
 #
 
+# ANT+ stack
+PRODUCT_PACKAGES += \
+	com.dsi.ant.antradio_library \
+	AntHalService \
+	libantradio \
+	antradio_app
+
+# Audio
+PRODUCT_PACKAGES += \
+	audiod \
+	audio.a2dp.default \
+	audio.usb.default \
+	audio.r_submix.default \
+	audio.primary.msm8992 \
+	tinymix \
+	libtinycompress \
+	cplay
+
+PRODUCT_PACKAGES += \
+	libaudio-resampler \
+	libqcomvisualizer \
+	libqcomvoiceprocessing \
+	libqcompostprocbundle
+
+# Bson
+PRODUCT_PACKAGES += \
+	libbson
+
+# Charger
+PRODUCT_PACKAGES += \
+	charger_res_images
+
+# Connectivity Engine support
+PRODUCT_PACKAGES += \
+	CNEService \
+	cneapiclient \
+	com.quicinc.cne \
+	libcnefeatureconfig \
+	services-ext
+
+# Curl
+PRODUCT_PACKAGES += \
+	libcurl \
+	curl
+
+# Fingerprint
+PRODUCT_PACKAGES += \
+	fingerprintd
+
+# Filesystem management tools
+PRODUCT_PACKAGES += \
+	e2fsck \
+	make_ext4fs \
+	setup_fs
+
+# GPS
+PRODUCT_PACKAGES += \
+	gps.msm8992
+
+# Vendor
+PRODUCT_PACKAGES += \
+	com.qualcomm.msapm \
+	qcrilmsgtunnel \
+	TimeService \
+	com.qualcomm.qti.services.secureui
+
+# Graphics
+PRODUCT_PACKAGES += \
+	copybit.msm8992 \
+	gralloc.msm8992 \
+	hwcomposer.msm8992 \
+	memtrack.msm8992 \
+	liboverlay \
+	libtinyxml
+
+# IPv6
+PRODUCT_PACKAGES += \
+	ebtables \
+	ethertypes \
+	libebtc
+
+# Camrera
+PRODUCT_PACKAGES += \
+	Snap
+
+# Gello
+PRODUCT_PACKAGES += \
+	Gello
+
+# Keystore
+PRODUCT_PACKAGES += \
+	keystore.msm8992
+
+# Lights
+PRODUCT_PACKAGES += \
+	lights.msm8992
+
+# Live Wallpapers
+PRODUCT_PACKAGES += \
+	librs_jni
+
+# NFC
+PRODUCT_PACKAGES += \
+	nfc_nci.bcm2079x.default \
+	NfcNci \
+	Tag \
+	com.android.nfc_extras
+
+# OMX
+PRODUCT_PACKAGES += \
+	libc2dcolorconvert \
+	libdashplayer \
+	libdivxdrmdecrypt \
+	libmm-omxcore \
+	libOmxAacEnc \
+	libOmxAmrEnc \
+	libOmxCore \
+	libOmxEvrcEnc \
+	libOmxQcelp13Enc \
+	libOmxVdecHevc \
+	libOmxVidcCommon \
+	libOmxVdec \
+	libOmxVenc \
+	libstagefrighthw \
+	qcmediaplayer
+
+# rmnetctl
+PRODUCT_PACKAGES += \
+	librmnetctl
+
+# Power
+PRODUCT_PACKAGES += \
+	power.msm8992
+
+PRODUCT_BOOT_JARS += \
+	qcmediaplayer
+
+# Ril
+PRODUCT_PACKAGES += \
+	libtinyxml2 \
+	libxml2
+
+# workaround
+PRODUCT_PACKAGES += \
+	libboringssl-compat
+
+# Sensors
+PRODUCT_PACKAGES += \
+	sensors.msm8992
+
+# stlport
+PRODUCT_PACKAGES += \
+	libstlport
+
+# USB
+PRODUCT_PACKAGES += \
+	com.android.future.usb.accessory
+
 # GPS
 PRODUCT_COPY_FILES += \
 	$(DEVICE_PATH)/gps/gps.conf:system/etc/gps.conf
@@ -194,11 +349,11 @@ PRODUCT_PACKAGES += \
 	fstab.qcom
 
 # WiFi
-#PRODUCT_COPY_FILES += \
+PRODUCT_COPY_FILES += \
 	$(DEVICE_PATH)/wifi/hostapd.conf:system/etc/hostapd/hostapd_default.conf \
 	$(DEVICE_PATH)/wifi/hostapd.accept:system/etc/hostapd/hostapd.accept \
-	$(DEVICE_PATH)/wifi/hostapd.deny:system/etc/hostapd/hostapd.deny \
-	$(DEVICE_PATH)/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
+	$(DEVICE_PATH)/wifi/hostapd.deny:system/etc/hostapd/hostapd.deny
+	#$(DEVICE_PATH)/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
 	$(DEVICE_PATH)/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
 
 #PRODUCT_COPY_FILES += \
@@ -218,7 +373,7 @@ PRODUCT_PACKAGES += \
 	hostapd_cli \
 	dhcpcd.conf
 
-# dalvik vm configs
+# Dalvik
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 # Boot animation

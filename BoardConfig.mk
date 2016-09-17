@@ -60,10 +60,12 @@ TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/kernel
+
 WLAN_MODULES:
 	mkdir -p $(KERNEL_MODULES_OUT)/qca_cld
 	mv $(KERNEL_MODULES_OUT)/wlan.ko $(KERNEL_MODULES_OUT)/qca_cld/qca_cld_wlan.ko
 	ln -sf /system/lib/modules/qca_cld/qca_cld_wlan.ko $(TARGET_OUT)/lib/modules/wlan.ko
+
 TARGET_KERNEL_MODULES += WLAN_MODULES
 
 # ANT+
@@ -240,7 +242,7 @@ TW_EXTERNAL_STORAGE_MOUNT_POINT := "usb-otg"
 TARGET_RIL_VARIANT := caf
 FEATURE_QCRIL_UIM_SAP_SERVER_MODE := true
 #BOARD_PROVIDES_LIBRIL := true
-#	BOARD_PROVIDES_RILD := true
+#BOARD_PROVIDES_RILD := true
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
