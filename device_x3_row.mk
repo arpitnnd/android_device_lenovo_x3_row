@@ -17,6 +17,13 @@ endif
 #PRODUCT_COPY_FILES += \
 	$(LOCAL_KERNEL):kernel
 
+# ANT+ stack
+PRODUCT_PACKAGES += \
+	com.dsi.ant.antradio_library \
+	AntHalService \
+	libantradio \
+	antradio_app
+
 # Audio
 PRODUCT_COPY_FILES += \
 	$(DEVICE_PATH)/audio/acdbdata/Fluid/Fluid_Bluetooth_cal.acdb:system/etc/acdbdata/Fluid/Fluid_Bluetooth_cal.acdb \
@@ -53,6 +60,42 @@ PRODUCT_COPY_FILES += \
 	$(DEVICE_PATH)/audio/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml \
 	$(DEVICE_PATH)/audio/surround_sound_3mic/surround_sound_rec_AZ.cfg:system/etc/surround_sound_3mic/surround_sound_rec_AZ.cfg
 
+PRODUCT_PACKAGES += \
+	audiod \
+	audio.a2dp.default \
+	audio.usb.default \
+	audio.r_submix.default \
+	audio.primary.msm8992 \
+	tinymix \
+	libtinycompress \
+	cplay
+
+PRODUCT_PACKAGES += \
+	libaudio-resampler \
+	libqcomvisualizer \
+	libqcomvoiceprocessing \
+	libqcompostprocbundle
+
+# Bson
+PRODUCT_PACKAGES += \
+	libbson
+
+# Camera
+PRODUCT_PACKAGES += \
+	Snap
+
+# Charger
+PRODUCT_PACKAGES += \
+	charger_res_images
+
+# CNE support
+PRODUCT_PACKAGES += \
+	CNEService \
+	cneapiclient \
+	com.quicinc.cne \
+	libcnefeatureconfig \
+	services-ext
+
 #
 # Configs start
 #
@@ -83,7 +126,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	$(call find-copy-subdir-files,*,$(DEVICE_PATH)/configs/misc,system/etc)
 
-# Perf
+# perf
 PRODUCT_COPY_FILES += \
 	$(DEVICE_PATH)/configs/msm_irqbalance.conf:system/etc/msm_irqbalance.conf
 
@@ -169,46 +212,6 @@ PRODUCT_COPY_FILES += \
 # Configs end
 #
 
-# ANT+ stack
-PRODUCT_PACKAGES += \
-	com.dsi.ant.antradio_library \
-	AntHalService \
-	libantradio \
-	antradio_app
-
-# Audio
-PRODUCT_PACKAGES += \
-	audiod \
-	audio.a2dp.default \
-	audio.usb.default \
-	audio.r_submix.default \
-	audio.primary.msm8992 \
-	tinymix \
-	libtinycompress \
-	cplay
-
-PRODUCT_PACKAGES += \
-	libaudio-resampler \
-	libqcomvisualizer \
-	libqcomvoiceprocessing \
-	libqcompostprocbundle
-
-# Bson
-PRODUCT_PACKAGES += \
-	libbson
-
-# Charger
-PRODUCT_PACKAGES += \
-	charger_res_images
-
-# Connectivity Engine support
-PRODUCT_PACKAGES += \
-	CNEService \
-	cneapiclient \
-	com.quicinc.cne \
-	libcnefeatureconfig \
-	services-ext
-
 # Curl
 PRODUCT_PACKAGES += \
 	libcurl \
@@ -224,16 +227,18 @@ PRODUCT_PACKAGES += \
 	make_ext4fs \
 	setup_fs
 
+# Gello
+PRODUCT_PACKAGES += \
+	Gello
+
 # GPS
+PRODUCT_COPY_FILES += \
+	$(DEVICE_PATH)/gps/flp.conf:system/etc/flp.conf \
+	$(DEVICE_PATH)/gps/gps.conf:system/etc/gps.conf \
+	$(DEVICE_PATH)/gps/izat.conf:system/etc/izat.conf
+
 PRODUCT_PACKAGES += \
 	gps.msm8992
-
-# Vendor
-PRODUCT_PACKAGES += \
-	com.qualcomm.msapm \
-	qcrilmsgtunnel \
-	TimeService \
-	com.qualcomm.qti.services.secureui
 
 # Graphics
 PRODUCT_PACKAGES += \
@@ -249,14 +254,6 @@ PRODUCT_PACKAGES += \
 	ebtables \
 	ethertypes \
 	libebtc
-
-# Camrera
-PRODUCT_PACKAGES += \
-	Snap
-
-# Gello
-PRODUCT_PACKAGES += \
-	Gello
 
 # Keystore
 PRODUCT_PACKAGES += \
@@ -295,41 +292,12 @@ PRODUCT_PACKAGES += \
 	libstagefrighthw \
 	qcmediaplayer
 
-# rmnetctl
-PRODUCT_PACKAGES += \
-	librmnetctl
+PRODUCT_BOOT_JARS += \
+	qcmediaplayer
 
 # Power
 PRODUCT_PACKAGES += \
 	power.msm8992
-
-PRODUCT_BOOT_JARS += \
-	qcmediaplayer
-
-# Ril
-PRODUCT_PACKAGES += \
-	libtinyxml2 \
-	libxml2
-
-# workaround
-PRODUCT_PACKAGES += \
-	libboringssl-compat
-
-# Sensors
-PRODUCT_PACKAGES += \
-	sensors.msm8992
-
-# stlport
-PRODUCT_PACKAGES += \
-	libstlport
-
-# USB
-PRODUCT_PACKAGES += \
-	com.android.future.usb.accessory
-
-# GPS
-PRODUCT_COPY_FILES += \
-	$(DEVICE_PATH)/gps/gps.conf:system/etc/gps.conf
 
 # Ramdisk
 PRODUCT_PACKAGES += \
@@ -347,6 +315,34 @@ PRODUCT_PACKAGES += \
 	init.target.rc \
 	ueventd.qcom.rc \
 	fstab.qcom
+
+# Ril
+PRODUCT_PACKAGES += \
+	libtinyxml2 \
+	libxml2
+
+# rmnetctl
+PRODUCT_PACKAGES += \
+	librmnetctl
+
+# Sensors
+PRODUCT_PACKAGES += \
+	sensors.msm8992
+
+# stlport
+PRODUCT_PACKAGES += \
+	libstlport
+
+# USB
+PRODUCT_PACKAGES += \
+	com.android.future.usb.accessory
+
+# Vendor
+PRODUCT_PACKAGES += \
+	com.qualcomm.msapm \
+	qcrilmsgtunnel \
+	TimeService \
+	com.qualcomm.qti.services.secureui
 
 # WiFi
 PRODUCT_COPY_FILES += \
@@ -372,6 +368,10 @@ PRODUCT_PACKAGES += \
 	hostapd \
 	hostapd_cli \
 	dhcpcd.conf
+
+# workaround
+PRODUCT_PACKAGES += \
+	libboringssl-compat
 
 # Dalvik
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
