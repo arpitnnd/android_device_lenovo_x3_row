@@ -1,0 +1,3 @@
+# Ril
+BOARD_PROVIDES_LIBRIL := true
+#BOARD_PROVIDES_RILD := true
