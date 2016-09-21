@@ -331,22 +331,19 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/wifi/hostapd.accept:system/etc/hostapd/hostapd.accept \
 	$(LOCAL_PATH)/wifi/hostapd.deny:system/etc/hostapd/hostapd.deny \
 	$(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
-	$(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
-
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/wifi/WCNSS_cfg.dat:system/etc/wifi/WCNSS_cfg.dat \
+	$(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
 	$(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini
 
 PRODUCT_PACKAGES += \
-	wpa_supplicant.conf \
-	wpa_supplicant \
-	libwpa_client \
-	libwcnss_qmi \
-	libQWiFiSoftApCfg \
-	libqsap_sdk \
+	dhcpcd.conf \
 	hostapd \
 	hostapd_cli \
-	dhcpcd.conf
+	libwpa_client \
+	wpa_supplicant \
+	wpa_supplicant.conf \
+	libwcnss_qmi \
+	libQWiFiSoftApCfg \
+	libqsap_sdk
 
 # workaround
 PRODUCT_PACKAGES += \
