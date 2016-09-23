@@ -1,0 +1,126 @@
+# Copyright (c) 2009-2012, The Linux Foundation. All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above copyright
+#       notice, this list of conditions and the following disclaimer in the
+#       documentation and/or other materials provided with the distribution.
+#     * Neither the name of The Linux Foundation nor
+#       the names of its contributors may be used to endorse or promote
+#       products derived from this software without specific prior written
+#       permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NON-INFRINGEMENT ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+# CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+# OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+# OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+
+import init.lenovo.rc
+import init.lenovo.encfs.rc
+
+on init
+    #for tp sys file
+    chown system system /sys/class/inupt/input0/glove_mode
+    chown system system /sys/class/inupt/input0/gesture_only
+    chown system system /sys/class/touch/tp_dev/ic_info
+
+    #Vibrator
+    chown system system /sys/class/timed_output/vibrator/vmax
+
+    #KeyDisabler
+    chown system system /sys/class/input/input0/0dbutton
+
+    #Dt2w
+    chown system system /sys/class/input/input0/wake_gesture
+
+    #change some node access mode for system app to access
+    chown system system /dev/rmi0
+    chmod 0664 /dev/rmi0
+    chown system system /sys/devices/soc.0/leds-qpnp-ffffff[0-9a-f]*/leds/red/brightness
+    chmod 0664 /sys/devices/soc.0/leds-qpnp-ffffff[0-9a-f]*/leds/red/brightness
+    chown system system /sys/devices/virtual/input/input5/hall_int_gpio
+    chmod 0664 /sys/devices/virtual/input/input5/hall_int_gpio
+    chown system system /sys/devices/virtual/graphics/fb0/cabc_onoff
+    chmod 0664 /sys/devices/virtual/graphics/fb0/cabc_onoff
+    chown system system /sys/class/i2c-dev/i2c-11/device/11-0036/backlight/lm36923/dimming
+    chmod 0664 /sys/class/i2c-dev/i2c-11/device/11-0036/backlight/lm36923/dimming
+    chown system system /sys/class/leds/led:torch_0/brightness
+    chmod 0660 /sys/class/leds/led:torch_0/brightness
+    chown shell system /sys/class/leds/led:torch_0/brightness
+    restorecon /sys/class/leds/led:torch_0/brightness
+    chown system system /sys/class/leds/led:torch_1/brightness
+    chmod 0660 /sys/class/leds/led:torch_1/brightness
+    chown shell system /sys/class/leds/led:torch_1/brightness
+    restorecon /sys/class/leds/led:torch_1/brightness
+
+    chown system system /sys/class/leds/red/blink
+    chown system system /sys/class/leds/green/blink
+    chown system system /sys/class/leds/blue/blink
+    chown system system /sys/class/leds/red/blink
+
+
+    #######################################################zhujp2 add sensor_hub system
+    chown system system /sys/class/cywee_sensorhub/sensor_hub/batch
+    chown system system /sys/class/cywee_sensorhub/sensor_hub/calibrator_cmd
+    chown system system /sys/class/cywee_sensorhub/sensor_hub/calibrator_data
+    chown system system /sys/class/cywee_sensorhub/sensor_hub/delay_ms
+    chown system system /sys/class/cywee_sensorhub/sensor_hub/enable
+    chown system system /sys/class/cywee_sensorhub/sensor_hub/firmware_update_cmd
+    chown system system /sys/class/cywee_sensorhub/sensor_hub/firmware_update_data
+    chown system system /sys/class/cywee_sensorhub/sensor_hub/firmware_update_i2c
+    chown system system /sys/class/cywee_sensorhub/sensor_hub/firmware_update_status
+    chown system system /sys/class/cywee_sensorhub/sensor_hub/flush
+    chown system system /sys/class/cywee_sensorhub/sensor_hub/iio
+    chown system system /sys/class/cywee_sensorhub/sensor_hub/iio/buffer/length
+    chown system system /sys/class/cywee_sensorhub/sensor_hub/iio/buffer/enable
+    chown system system /sys/class/cywee_sensorhub/sensor_hub/iio/trigger/current_trigger
+    chown system system /sys/class/cywee_sensorhub/sensor_hub/mcu_mode
+    chown system system /sys/class/cywee_sensorhub/sensor_hub/timestamp
+    chown system system /sys/class/cywee_sensorhub/sensor_hub/version
+    chown system system /sys/class/cywee_sensorhub/sensor_hub/irc
+    chown system system /dev/iio:device0
+    chown system system /sys/class/cywee_sensorhub/sensor_hub/raw_data0
+    chown system system /sys/class/cywee_sensorhub/sensor_hub/raw_data4
+    chmod 644 /dev/iio:device0
+    chmod 644 /sys/bus/iio/devices/trigger0/name
+    chmod 644 /sys/bus/iio/devices/iio:device0/buffer/length
+    chmod 644 /sys/bus/iio/devices/iio:device0/buffer/enable
+    chmod 644 /sys/bus/iio/devices/iio:device0/trigger/current_trigger
+    chmod 644 /sys/class/cywee_sensorhub/sensor_hub/iio/trigger/current_trigger
+    chmod 644 /sys/class/cywee_sensorhub/sensor_hub/ap_calibrator_data_acc_rl
+    chmod 644 /sys/class/cywee_sensorhub/sensor_hub/batch
+    chmod 644 /sys/class/cywee_sensorhub/sensor_hub/calibrator_cmd
+    chmod 644 /sys/class/cywee_sensorhub/sensor_hub/calibrator_data
+    chmod 644 /sys/class/cywee_sensorhub/sensor_hub/delay_ms
+    chmod 644 /sys/class/cywee_sensorhub/sensor_hub/enable
+    chmod 644 /sys/class/cywee_sensorhub/sensor_hub/firmware_update_cmd
+    chmod 644 /sys/class/cywee_sensorhub/sensor_hub/firmware_update_data
+    chmod 644 /sys/class/cywee_sensorhub/sensor_hub/firmware_update_i2c
+    chmod 644 /sys/class/cywee_sensorhub/sensor_hub/firmware_update_status
+    chmod 644 /sys/class/cywee_sensorhub/sensor_hub/flush
+    chmod 644 /sys/class/cywee_sensorhub/sensor_hub/iio
+    chmod 644 /sys/class/cywee_sensorhub/sensor_hub/iio/buffer/length
+    chmod 644 /sys/class/cywee_sensorhub/sensor_hub/iio/buffer/enable
+    chmod 644 /sys/class/cywee_sensorhub/sensor_hub/iio/trigger/current_trigger
+    chmod 644 /sys/class/cywee_sensorhub/sensor_hub/mcu_mode
+    chmod 644 /sys/class/cywee_sensorhub/sensor_hub/timestamp
+    chmod 644 /sys/class/cywee_sensorhub/sensor_hub/version
+    chmod 644 /sys/class/cywee_sensorhub/sensor_hub/irc
+    chmod 0666   /sys/bus/msm_subsys/devices/subsys2/restart_level
+    chmod 0666  /d/msm_subsys/modem
+    chmod 644 /sys/class/cywee_sensorhub/sensor_hub/raw_data0
+    chmod 644 /sys/class/cywee_sensorhub/sensor_hub/raw_data4
+
+on boot
+    #Fingerprint
+    mkdir /data/fpc  0770 system system

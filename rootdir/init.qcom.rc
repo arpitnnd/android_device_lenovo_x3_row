@@ -25,11 +25,9 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-#import init.qcom.usb.rc
+import init.qcom.usb.rc
 import init.target.rc
-
-
-import init.lenovo.encfs.rc
+import init.lenovo.target.rc
 
 on early-init
     mount debugfs debugfs /sys/kernel/debug
@@ -202,7 +200,7 @@ on post-fs-data
 
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
 
-    #[lenovo_fw,jiash1,SW_Framework_Audio],2015-11-18 merge KLASSENM-72, add 
+    #[lenovo_fw,jiash1,SW_Framework_Audio],2015-11-18 merge KLASSENM-72, add
     #[lenovo_fw,zhusf,enforce_camera_sound_feature] ,"camrea enforced sound config", add
     # Set this property to 1 to force the camera shutter sound to play on speaker
     setprop ro.camera.sound.forced 0
