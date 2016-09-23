@@ -295,7 +295,11 @@ PRODUCT_PACKAGES += \
 	init.qcom.usb.rc \
 	init.target.rc \
 	ueventd.qcom.rc \
-	fstab.qcom
+	fstab.qcom \
+	init.lenovo.crash.rc \
+	init.lenovo.encfs.rc \
+	init.lenovo.log.rc \
+	init.lenovo.target.rc
 
 # Ril
 PRODUCT_PACKAGES += \

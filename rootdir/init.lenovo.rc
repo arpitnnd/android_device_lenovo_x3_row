@@ -1,11 +1,10 @@
 on boot
-
     chown system system /sys/bus/spi/devices/spi12.0/clk_enable
     chown system system /sys/bus/spi/devices/spi12.0/wakeup_enable
     chown system system /sys/bus/spi/devices/spi12.0/spi_prepare
     chown system system /sys/bus/spi/devices/spi12.0/irq
-	chown system system /sys/bus/spi/devices/spi12.0/camera_input
-	
+    chown system system /sys/bus/spi/devices/spi12.0/camera_input
+
 on post-fs
 
 #for factory properties
@@ -85,12 +84,11 @@ on property:wlan.test.open=0
 on property:wlan.test.report=1
     start wlan_report
 
-
 # load otse module, add by zhuangnk1
-# service otse_load_module /system/bin/sh /system/etc/init.otse.sh
-#    class core
-#    user root
-#    oneshot
+service otse_load_module /system/bin/sh /system/etc/init.otse.sh
+    class core
+    user root
+    oneshot
 
 #for EngineerTest.apk bt rf test
 service bt_rf_test /system/bin/sh /system/etc/bt_rf_test.sh
