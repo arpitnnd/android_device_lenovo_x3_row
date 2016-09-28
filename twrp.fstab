@@ -1,0 +1,40 @@
+# Android fstab file.
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+
+#<mnt_point>    <type>  <src>                                         <mnt_flags and options>
+
+/aboot          emmc    /dev/block/bootdevice/by-name/aboot           flags=display="Aboot";backup=1
+/abootbak       emmc    /dev/block/bootdevice/by-name/abootbak        flags=subpartitionof=/aboot;backup=1
+/boot           emmc    /dev/block/bootdevice/by-name/boot            flags=display="Boot";backup=1
+/recovery       emmc    /dev/block/bootdevice/by-name/recovery        flags=display="Recovery";backup=1
+/splash         emmc    /dev/block/bootdevice/by-name/splash          flags=display="Splash";backup=1;flashimg=1
+#/system_image   emmc    /dev/block/bootdevice/by-name/system
+/system         ext4    /dev/block/bootdevice/by-name/system
+/preload        ext4    /dev/block/bootdevice/by-name/preload         flags=wipeingui
+/persist        ext4    /dev/block/bootdevice/by-name/persist
+/cache          ext4    /dev/block/bootdevice/by-name/cache
+/data           ext4    /dev/block/bootdevice/by-name/userdata        length=-16384,encryptable=footer
+/misc           emmc    /dev/block/bootdevice/by-name/misc            flags=display="Misc";backup=1
+/modem          vfat    /dev/block/bootdevice/by-name/modem           flags=display="Modem";backup=1
+/bluetooth      vfat    /dev/block/bootdevice/by-name/bluetooth       flags=display="Bluetooth";backup=1
+
+/pmic           emmc    /dev/block/bootdevice/by-name/pmic            flags=display="Firmware";backup=1
+/pmicbak        emmc    /dev/block/bootdevice/by-name/pmicbak         flags=subpartitionof=/pmic;backup=1
+/sbl1           emmc    /dev/block/bootdevice/by-name/sbl1            flags=subpartitionof=/pmic;backup=1
+/sbl1bak        emmc    /dev/block/bootdevice/by-name/sbl1bak         flags=subpartitionof=/pmic;backup=1
+/sdi            emmc    /dev/block/bootdevice/by-name/sdi             flags=subpartitionof=/pmic;backup=1
+/tz             emmc    /dev/block/bootdevice/by-name/tz              flags=subpartitionof=/pmic;backup=1
+/tzbak          emmc    /dev/block/bootdevice/by-name/tzbak           flags=subpartitionof=/pmic;backup=1
+/rpm            emmc    /dev/block/bootdevice/by-name/rpm             flags=subpartitionof=/pmic;backup=1
+/rpmbak         emmc    /dev/block/bootdevice/by-name/rpmbak          flags=subpartitionof=/pmic;backup=1
+/hyp            emmc    /dev/block/bootdevice/by-name/hyp             flags=subpartitionof=/pmic;backup=1
+/hypbak         emmc    /dev/block/bootdevice/by-name/hypbak          flags=subpartitionof=/pmic;backup=1
+
+/fsg            emmc    /dev/block/bootdevice/by-name/fsg             flags=display="EFS";backup=1
+/modemst1       emmc    /dev/block/bootdevice/by-name/modemst1        flags=subpartitionof=/fsg;backup=1
+/modemst2       emmc    /dev/block/bootdevice/by-name/modemst2        flags=subpartitionof=/fsg;backup=1
+/mrd            emmc    /dev/block/bootdevice/by-name/mrd             flags=display="MRD Data";backup=1
+
+/external_sd    auto    /dev/block/mmcblk1p1    /dev/block/mmcblk1    flags=display="microSD Card";storage;wipeingui;removable
+/usbotg         auto    /dev/block/sda1         /dev/block/sda        flags=display="USB-OTG";storage;wipeingui;removable
