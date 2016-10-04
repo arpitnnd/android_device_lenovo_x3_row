@@ -38,7 +38,7 @@ on init
     #[lenovo-fw,wangxz5,add_bootprof_log],"add for bootprof",add
     write /proc/bootprof "INIT: on init start"
     #[lenovo-fw,wangxz5,add_bootprof_log],end
-    start qfintverify
+    #start qfintverify
     # Set permissions for persist partition
     mkdir /persist 0771 system system
 
@@ -920,11 +920,11 @@ service hvdcp /system/bin/hvdcp
     user root
     disabled
 
-on property:persist.usb.hvdcp.detect=true
-    start hvdcp
+#on property:persist.usb.hvdcp.detect=true
+#    start hvdcp
 
-on property:persist.usb.hvdcp.detect=false
-    stop hvdcp
+#on property:persist.usb.hvdcp.detect=false
+#    stop hvdcp
 
 service charger_monitor /system/bin/charger_monitor
     user root
