@@ -1,3 +1,7 @@
+# CPU
+ENABLE_CPUSETS := true
+TARGET_USES_64_BIT_BINDER := true
+
 # Qualcomm support
 BOARD_USES_QCOM_HARDWARE := true
 

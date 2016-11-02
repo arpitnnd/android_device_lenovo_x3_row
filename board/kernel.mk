@@ -5,20 +5,16 @@ BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_RAMDISK_OFFSET     := 0x01000000
 
 BOARD_KERNEL_CMDLINE := console=tty60,115200,n8 androidboot.console=tty60 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 boot_cpus=0-5 androidboot.selinux=permissive
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET) #--dt device/lenovo/x3_row/dt.img # Remove this when building N
 BOARD_KERNEL_SEPARATED_DT := true
-TARGET_KERNEL_APPEND_DTB := true
-BOARD_MKBOOTIMG_ARGS := --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET) #--dt device/lenovo/x3_row/dt.img
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_SOURCE := kernel/lenovo/msm8992
 TARGET_KERNEL_CONFIG := x3_defconfig
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
+TARGET_KERNEL_APPEND_DTB := true
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/kernel
-
-ENABLE_CPUSETS := true
-
-TARGET_USES_64_BIT_BINDER := true
 
 WLAN_MODULES:
 	mkdir -p $(KERNEL_MODULES_OUT)/qca_cld
