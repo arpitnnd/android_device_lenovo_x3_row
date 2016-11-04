@@ -26,7 +26,6 @@
 #
 
 import init.lenovo.rc
-import init.lenovo.encfs.rc
 
 on init
     #for tp sys file
