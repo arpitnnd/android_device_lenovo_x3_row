@@ -1,2 +1,2 @@
-add_lunch_combo cm_x3_row-eng
-add_lunch_combo cm_x3_row-userdebug
+add_lunch_combo lineage_x3_row-eng
+add_lunch_combo lineage_x3_row-userdebug
